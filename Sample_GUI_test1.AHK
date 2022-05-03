@@ -15,9 +15,9 @@ Gui, SelectGameMode:+AlwaysOnTop
 Gui, SelectGameMode:Font, s15 Bold q1 cBlack, Consolas
 Gui, SelectGameMode:Add, Text, x35 y15 w300 h30, Select Game Mode
 Gui, SelectGameMode:Font, s15 Normal q1 cBlack, Consolas
-Gui, SelectGameMode:Add, Radio, x49 y60 w140 h16 gAChoice vAChoice1, [&1] %vChoice1%
-Gui, SelectGameMode:Add, Radio, x49 y85 w140 h16 gAChoice vAChoice2, [&2] %vChoice2%
-Gui, SelectGameMode:Add, Radio, x49 y110 w140 	h16 gAChoice vAChoice3, [&3] %vChoice3%
+Gui, SelectGameMode:Add, Radio, x49 y60 w145 h16 gAChoice vAChoice1, [&1] %vChoice1%
+Gui, SelectGameMode:Add, Radio, x49 y85 w145 h16 gAChoice vAChoice2, [&2] %vChoice2%
+Gui, SelectGameMode:Add, Radio, x49 y110 w145 	h16 gAChoice vAChoice3, [&3] %vChoice3%
 Gui, SelectGameMode:Font, s15 Bold q1 cBlack, Consolas
 Gui, SelectGameMode:Add, Button, x20  y150 w95 h25 gLaunchIt, &LAUNCH
 Gui, SelectGameMode:Font, s15 Normal q1 cBlack, Consolas
