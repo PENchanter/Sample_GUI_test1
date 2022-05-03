@@ -8,28 +8,27 @@ vChoice1 := "server1"
 vChoice2 := "server2"
 vChoice3 := "server3"
 
-;	note, the size, x/y, width and height have all been tested and found to be: OK
-; Gui, New, +HwndhGui
-Gui, SelectGameMode:New
-Gui, SelectGameMode:+AlwaysOnTop
-Gui, SelectGameMode:Font, s15 Bold q1 cBlack, Consolas
-Gui, SelectGameMode:Add, Text, x35 y15 w300 h30, Select Game Mode
-Gui, SelectGameMode:Font, s15 Normal q1 cBlack, Consolas
-Gui, SelectGameMode:Add, Radio, x49 y60 w145 h16 gAChoice vAChoice1, [&1] %vChoice1%
-Gui, SelectGameMode:Add, Radio, x49 y85 w145 h16 gAChoice vAChoice2, [&2] %vChoice2%
-Gui, SelectGameMode:Add, Radio, x49 y110 w145 	h16 gAChoice vAChoice3, [&3] %vChoice3%
-Gui, SelectGameMode:Font, s15 Bold q1 cBlack, Consolas
-Gui, SelectGameMode:Add, Button, x20  y150 w95 h25 gLaunchIt, &LAUNCH
-Gui, SelectGameMode:Font, s15 Normal q1 cBlack, Consolas
-Gui, SelectGameMode:Add, Button, 	x135 y150 w90 h25 gCanceled, &Cancel
-Gui, SelectGameMode:Font
-	GuiControl, SelectGameMode:+Default, &Cancel
-	GuiControl, SelectGameMode:Hide, &LAUNCH
-Gui, SelectGameMode:Show, x750 y250 h200 w255, Conan Exiles
+Gui, SelectGameMode:New ; <-- <solution provided by> 0xB0BAFE77
+Gui, SelectGameMode:Default ; <-- <solution provided by> 0xB0BAFE77
+Gui, +AlwaysOnTop
+Gui, Font, s15 Bold q1 cBlack, Consolas ; [S]ize, [Q]uality [C]olor
+Gui, Add, Text, x35 y15 w300 h30 , Select Game Mode
+Gui, Font, s15 Normal q1 cBlack, Consolas ; [S]ize, [Q]uality [C]olor
+Gui, Add, Radio, x48 y55 w145 h20 gAChoice vAChoice1, [&1] %vChoice1%
+Gui, Add, Radio, x48 y80 w145 h20 gAChoice vAChoice2, [&2] %vChoice2%
+Gui, Add, Radio, x48 y105 w145 h20 gAChoice vAChoice3, [&3] %vChoice3%
+Gui, Font, s15 Bold q1 cBlack, Consolas ; [S]ize, [Q]uality [C]olor
+Gui, Add, Button, x20 y150 w95 h25 gLaunchIt, &LAUNCH
+Gui, Font, s15 Normal q1 cBlack, Consolas ; [S]ize, [Q]uality [C]olor
+Gui, Add, Button, x135 y150 w90 h25 gCanceled, &Cancel
+Gui, Font
+GuiControl, +Default, &Cancel
+GuiControl, Hide, &LAUNCH ; gLaunchIt
+Gui, Show, x750 y250 h200 w255, Conan Exiles
 Return
 
 AChoice:
-	Gui, SelectGameMode:Submit, nohide
+	Gui, Submit, nohide
 	v_Choice := ""
 	If (AChoice1){
 		v_Choice := vChoice1
@@ -41,34 +40,33 @@ AChoice:
 		v_Choice := vChoice3
 	}
 ;	MsgBox, % v_Choice
-	GuiControl, SelectGameMode:Show, &LAUNCH
+	GuiControl, Show, &LAUNCH ; gLaunchIt
 Return
 
 LaunchIt:
-	Gui, SelectGameMode:Submit, nohide
-	Gui, SelectGameMode:Destroy
+	Gui, Submit, nohide
+	Gui, Destroy
 	GOTO GoContinueOne
 Return
 
 GoContinueOne:
-	MsgBox, 4161, Conan Exiles, '%v_Choice%': Game Mode was chosen.
-		IfMsgBox Ok, {
-			GOTO GoContinueTwo
-		} Else IfMsgBox Cancel, {
-			ExitApp
-		}
-	ExitApp
-
-GoContinueTwo:
+MsgBox, 4161, Conan Exiles, '%v_Choice%': Game Mode was chosen.
+	IfMsgBox Ok, {
+		GOTO GoContinueTwo
+	} Else IfMsgBox Cancel, {
+		ExitApp 
+	}
 ExitApp
 
-ButtonExit:
+GoContinueTwo:
+	ExitApp
+
 Canceled:
-GuiEscape:
-GuiClose:
+SelectGameModeGuiEscape: ; <-- <solution provided by> 0xB0BAFE77
+SelectGameModeGuiClose: ; <-- <solution provided by> 0xB0BAFE77
 GuiContextMenu:
 	ExitApp
 Return
 *Esc::
-    ExitApp
+	ExitApp
 Return
